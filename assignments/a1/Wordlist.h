@@ -7,9 +7,9 @@
 // Student Info
 // ------------
 //
-// Name : <put your full name here!>
-// St.# : <put your full SFU student number here>
-// Email: <put your SFU email address here>
+// Name : <Michael Chen>
+// St.# : <301395680>
+// Email: <mjc25@sfu.ca>
 //
 //
 // Statement of Originality
@@ -52,15 +52,64 @@ class Wordlist : public Wordlist_base
         Node *next;
     };
 
-    //
-    // ... your code goes here ...
-    //
+    Node* head = nullptr;
+public:
+    bool empty() const {
+        return head == nullptr;         //check if head is null
+    }
+    void pop_front() {
+        assert(!empty());               //make sure not empty
+        //asssert(head != nullptr);     //does the same thing
+        Node* temp_ptr = head;
+        head = head->next;
+        delete temp_ptr;
+    }
 
-    //
-    // ... you can write helper methods if you need them ...
-    //
+    Wordlist_base::~Wordlist_base () {
+        while (!empty()) {
+            pop_front();
+        }
+    }    
+   
+    int Wordlist_base::get_count (const string &w) const = 0 {
+        int accumulator = 0;
+        for (Node* p = head; p != nullptr; p = p->next) {
+            if (w == p->word) {
+                accumulator += 1;
+            }
+        }
+        return accumulator;
+    }
 
-    //
+    int Wordlist_base::num_different_words() const = 0 {
+
+    }
+
+    int Wordlist_base::total_words() const = 0 {
+    
+    }
+
+    bool Wordlist_base::is_sorted() const = 0 {
+
+    }
+
+    string Wordlist_base::most_frequent() const = 0 {
+
+    }
+
+    int Wordlist_base::num_singletons() const = 0 {
+    
+    }
+
+    void Wordlist_base::add_word(const string &w) = 0 {
+    
+    }
+
+    void Wordlist_base::print_words() const = 0 {
+
+    }
+    
+
     // ... write a default constructor that creates an empty Wordlist ...
     //
 
